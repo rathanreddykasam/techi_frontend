@@ -1,0 +1,80 @@
+<mat-card appearance="outlined" class="w-70 mt-20 mb-20" style="margin: auto">
+  <mat-card-content>
+    @if(post){
+    <div class="section view-post fx-col fx-layout-align--center--center">
+      <div class="title-bar mb-15">
+        <h1 class="mb-10">{{ post.heading }}</h1>
+        <p class="text-center">{{ post.tagline }}</p>
+      </div>
+      <div class="banner-logo mb-55">
+        <div class="banner">
+          <img [src]="post.bannerUrl" alt="image" />
+        </div>
+        <div class="logo">
+          <img [src]="post.logoUrl" alt="logo" />
+        </div>
+      </div>
+
+      <div class="intro mt-20 p-0-50">
+        <h4>Introduction</h4>
+        <p style="line-height: 2rem">{{ post.Intro }}</p>
+      </div>
+
+      <div class="story mt-20 p-0-50">
+        <h4>Story</h4>
+        <p style="line-height: 2rem" [innerHTML]="post.story"></p>
+      </div>
+
+      <div class="video-link mt-20 p-0-50">
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+
+      <div class="company mt-20 p-0-50 text-center font-size-22">
+        <h2 class="mb-10">website link</h2>
+        <a [href]="post.site_link" style="font-size: 1.4rem">{{
+          post.heading
+        }}</a>
+      </div>
+      <div
+        class="team-description flex gap-40 fx-layout-align--center--between mt-20 p-0-50 font-size-22"
+      >
+        <div class="team fx-col">
+          <h6>Team Size</h6>
+          <span>{{ post.team_size }}</span>
+        </div>
+        <div class="team-description fx-col">
+          <h6>Description</h6>
+          <span>{{ post.some_text }}</span>
+        </div>
+      </div>
+
+      <div class="branch-category flex gap-60 mt-20 p-0-50 font-size-22">
+        <div class="branch">
+          <h6>Branch</h6>
+          <span>{{ post.branch_id }}</span>
+        </div>
+        <div class="category">
+          <h6>Category</h6>
+          <span>{{ post.category_id }}</span>
+        </div>
+      </div>
+
+      <div class="info">
+        <h6>Posted On</h6>
+        <span>{{ post.posted_on }}</span>
+      </div>
+    </div>
+    } @else {
+    <div>loading...</div>
+    }
+  </mat-card-content>
+</mat-card>

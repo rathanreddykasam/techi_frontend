@@ -1,0 +1,352 @@
+@if(!isLoading){
+<div class="flex fx-row">
+  <div class="fx-1-1-1 m-20 mb-30">
+    <mat-card appearance="outlined" class="pl-30 pb-20 pr-30">
+      <h2>{{ label | titlecase }} User</h2>
+      <form [formGroup]="userForm" autocomplete="off" (submit)="addUser()">
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline" density="-2">
+              <mat-label>User Id </mat-label>
+              <input
+                matInput
+                placeholder="User Id"
+                minlength="1"
+                formControlName="UserId"
+                id="UserId"
+                required
+                autofocus
+              />
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validationMessages.userId">
+              <mat-error
+                class="error-md"
+                *ngIf="
+                  userForm.get('UserId').hasError(validation.type) &&
+                  (userForm.get('UserId').dirty ||
+                    userForm.get('UserId').touched ||
+                    isValidated)
+                "
+              >
+                {{ validation.message }}
+              </mat-error>
+            </ng-container>
+          </div>
+          <!-- <div class="fx-col fx-col-input-field">
+                        <mat-form-field  class="input-lg" appearance="outline">
+                            <mat-label>User Roles</mat-label>
+                            <mat-select formControlName="UserRoles" multiple> -->
+          <!-- <mat-select-trigger>
+                                    {{userForm.value?.UserRoles?.length && (userForm.value?.UserRoles[0] || '')}}
+                                    @if ((userForm.value?.UserRoles?.length || 0) > 1) {
+                                    <span class="example-additional-selection">
+                                        (+{{(userForm.value?.UserRoles?.length || 0) - 1}} {{userForm.value?.UserRoles?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                    }
+                                </mat-select-trigger> -->
+          <!-- @for (role of dialogData.roles; track role.Id) {
+                                <mat-option [value]="role.Id">{{role.Agency}} - {{role.Description}}</mat-option>
+                                }
+                            </mat-select>
+                        </mat-form-field>
+                    </div> -->
+        </div>
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-xl" appearance="outline">
+              <mat-label>Temporary Password</mat-label>
+              <input
+                matInput
+                placeholder="SOAP Access without Password"
+                minlength="1"
+                formControlName="SoapAccessWithoutPassword"
+                id="SoapAccessWithoutPassword"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input
+                matInput
+                placeholder="First Name"
+                minlength="1"
+                formControlName="FirstName"
+                id="FirstName"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input
+                matInput
+                placeholder="Last Name"
+                minlength="1"
+                formControlName="LastName"
+                id="LastName"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="Email"
+                minlength="1"
+                formControlName="Email"
+                id="Email"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-md" appearance="outline">
+              <mat-label>Phone</mat-label>
+              <input
+                matInput
+                placeholder="Phone"
+                minlength="1"
+                formControlName="PhoneNumber"
+                id="PhoneNumber"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-md" appearance="outline">
+              <mat-label>Ext</mat-label>
+              <input
+                matInput
+                placeholder="Ext"
+                minlength="1"
+                maxlength="3"
+                formControlName="PhoneNumberExtension"
+                id="PhoneNumberExtension"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>Ip Group</mat-label>
+              <input
+                matInput
+                placeholder="Ip Group"
+                minlength="1"
+                formControlName="IpGroup"
+                id="IpGroup"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <label id="Is-Locked" class="pl-10">Is Locked</label>
+            <mat-radio-group aria-label="Is-Locked" formControlName="IsLocked">
+              <mat-radio-button value="true">Yes</mat-radio-button>
+              <mat-radio-button value="false">No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>Active Date/Time</mat-label>
+              <input
+                autocomplete="off"
+                matInput
+                [matDatepicker]="ActiveDateTime"
+                placeholder="Active Date/Time"
+                formControlName="ActiveDateTime"
+                id="ActiveDateTime"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="ActiveDateTime"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #ActiveDateTime></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>InActive Date/Time</mat-label>
+              <input
+                autocomplete="off"
+                matInput
+                [matDatepicker]="InactiveDateTime"
+                placeholder="InActive Date/Time"
+                formControlName="InactiveDateTime"
+                id="InactiveDateTime"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="InactiveDateTime"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #InactiveDateTime></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- <div class="flex fx-wrap">
+                    <div class="fx-col fx-col-input-field">
+                        <mat-form-field class="input-xl" appearance="outline">
+                            <mat-label>Temporary Password</mat-label>
+                            <input matInput placeholder="SOAP Access without Password" minlength="1"
+                                formControlName="SoapAccessWithoutPassword" id="SoapAccessWithoutPassword" />
+                        </mat-form-field>
+                    </div>
+                </div> -->
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-md" appearance="outline">
+              <mat-label>Department</mat-label>
+              <input
+                matInput
+                placeholder="Department"
+                minlength="1"
+                formControlName="Department"
+                id="Department"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-md" appearance="outline">
+              <mat-label>Section</mat-label>
+              <input
+                matInput
+                placeholder="Section"
+                minlength="1"
+                formControlName="Section"
+                id="Section"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-md" appearance="outline">
+              <mat-label>Class</mat-label>
+              <input
+                matInput
+                placeholder="Class"
+                minlength="1"
+                formControlName="Class"
+                id="Class"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-md" appearance="outline">
+              <mat-label>Max Concurrent Logons</mat-label>
+              <input
+                matInput
+                placeholder="Max Concurrent Logons"
+                minlength="1"
+                formControlName="MaxConcurrentLogons"
+                id="MaxConcurrentLogons"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>User Agreement Date</mat-label>
+              <input
+                autocomplete="off"
+                matInput
+                [matDatepicker]="UserAgreementDate"
+                placeholder="User Agreement Date"
+                formControlName="UserAgreementDate"
+                id="UserAgreementDate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="UserAgreementDate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #UserAgreementDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-md" appearance="outline">
+              <mat-label>Default Printer</mat-label>
+              <input
+                matInput
+                placeholder="Default Printer"
+                minlength="1"
+                formControlName="DefaultPrinter"
+                id="DefaultPrinter"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-md" appearance="outline">
+              <mat-label>Terminal Group</mat-label>
+              <input
+                matInput
+                placeholder="Terminal Group"
+                minlength="1"
+                formControlName="TerminalGroup"
+                id="TerminalGroup"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex fx-wrap">
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>Authorization Group</mat-label>
+              <input
+                matInput
+                placeholder="Authorization Group"
+                minlength="1"
+                formControlName="AuthorizationGroup"
+                id="AuthorizationGroup"
+              />
+            </mat-form-field>
+          </div>
+          <div class="fx-col fx-col-input-field">
+            <mat-form-field class="input-lg" appearance="outline">
+              <mat-label>Copy Authorization From</mat-label>
+              <input
+                matInput
+                placeholder="Copy Authorization Group"
+                minlength="1"
+                formControlName="CopyAuthorizationFrom"
+                id="CopyAuthorizationFrom"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        @if(formAction != 'view'){
+        <div class="flex gap-10 fx-layout-align--start--end">
+          <button mat-button (click)="cancel()">Cancel</button>
+          <button mat-flat-button type="submit" cdkFocusInitial>
+            {{ formAction | titlecase }}
+          </button>
+        </div>
+        }
+      </form>
+    </mat-card>
+  </div>
+  <div class="fx-1-2-2 mt-20 mr-20">
+    <mat-card appearance="outlined" class="pl-30 pb-20 pr-30">
+      <h2>User Roles</h2>
+      @if(roles?.length){
+      <ag-grid-angular
+        style="width: 100%"
+        [class]="themeClass"
+        [rowSelection]="'multiple'"
+        [gridOptions]="gridOptions"
+        (gridReady)="onGridReady($event)"
+        (selectionChanged)="onSelectionChanged()"
+      />
+      } @else {
+      <div class="flex fx-layout-align--center--center">loading...</div>
+      }
+    </mat-card>
+  </div>
+</div>
+} @else {
+<div class="flex fx-layout-align--center--center">loading...</div>
+}

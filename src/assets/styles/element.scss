@@ -1,0 +1,157 @@
+@use "sass:math";
+
+.input {
+
+  &-xs,
+  &-sm,
+  &-md,
+  &-lg,
+  &-xl {
+    font-size: 0.8rem;
+
+    input {
+      padding: 0;
+    }
+
+    .mat-form-field-infix {
+      padding: 10px 0 10px 0;
+      //overflow: visible;
+      line-height: 1.25;
+    }
+  }
+
+  &-xs {
+    width: $width-xs;
+  }
+
+  &-sm {
+    width: $width-sm;
+  }
+
+  &-md {
+    width: $width-md;
+  }
+
+  &-lg {
+    width: $width-lg;
+  }
+
+  &-xl {
+    width: $width-xl;
+    max-width: calc(100vw - 8rem);
+  }
+
+  &-textarea {
+    max-width: calc(100vw - 8rem);
+
+    // min-width: $width-xl;
+    .mat-form-field-infix {
+      padding: 0.5rem 0 1rem 0;
+    }
+  }
+}
+
+$error-top: -1rem;
+
+.error {
+
+  &-xs,
+  &-sm,
+  &-md,
+  &-lg {
+    top: $error-top;
+    position: relative;
+    line-height: 1rem;
+  }
+
+  &-sm {
+    width: $width-sm;
+  }
+
+  &-md {
+    width: $width-md;
+  }
+
+  &-lg {
+    width: $width-lg;
+  }
+}
+
+.checkbox-container {
+  padding-top: 16px;
+}
+
+@media (max-width: 600px) {
+
+  .input-xs,
+  .error-xs,
+  .input-sm,
+  .error-sm,
+  .input-md,
+  .error-md,
+  .input-lg,
+  .error-lg,
+  .input-xl {
+    width: calc(100vw - 2.125rem);
+    /*margin-right: -10px;
+    max-width: -webkit-calc(100% - 3rem);
+    max-width: -moz-calc(100% - 3rem);
+    max-width: calc(100% - 3rem);*/
+  }
+
+  .input-xl,
+  .input-textarea {
+    max-width: none;
+    min-width: none;
+  }
+
+  .checkbox-container {
+    padding-top: 0;
+    padding-bottom: 16px;
+  }
+}
+
+.field {
+  align-content: flex-start;
+
+  &-xs,
+  &-sm,
+  &-md,
+  &-lg,
+  &-xl {
+    margin: 0.5rem 0;
+  }
+
+  &-no-margin {
+    margin: 0 0;
+  }
+
+  &-xs {
+    flex-basis: math.div($field-width-base , 2);
+  }
+
+  &-sm {
+    flex-basis: $field-width-base;
+  }
+
+  &-md {
+    flex-basis: $field-width-base * 2;
+  }
+
+  &-lg {
+    flex-basis: $field-width-base * 4;
+  }
+
+  &-xl {
+    flex-basis: $field-width-base * 8;
+  }
+
+  &-break {
+    flex-basis: 100%;
+    height: 0;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

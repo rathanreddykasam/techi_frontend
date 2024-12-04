@@ -1,0 +1,28 @@
+@import "../../../../src/assets/styles/common-attributes.scss";
+
+.header-section {
+    width: 95%;
+    margin: auto;
+}
+.logo {
+    color: $cjust-green;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.profile {
+    font-size: 1rem;
+    mat-icon{
+        position: relative;
+        top: 5px;
+    }
+
+    color: $cjust-green;
+}
+
+
+.section {
+    border-bottom: 1px solid $cjust-grey;
+}

@@ -1,0 +1,29 @@
+/* colors */
+$cjust-blue: #2f75b5;
+$cjust-royalblue:royalblue;
+$cjust-blue-dark: #275592;
+/*$cjust-blue-light: #222222;*/
+$cjust-blue-deep: #01447e;
+$cjust-blue-light: rgb(189, 215, 238);
+$cjust-white: white;
+$cjust-grey-dark: #333333;
+$cjust-grey: #dad9d9; // this is actually lighter than grey light!!!!
+$cjust-grey-light: #d3d3d3;
+$cjust-grey-mid: #696969;
+$cjust-grey-light-bg: #f8f8f8;
+$cjust-orange-light: #ffefd5;
+$cjust-yellow: bisque;
+$cjust-black:black;
+$cjust-BlackRussian:#0000008a;//added by kalpana after migating TableModule to material
+$cjust-green: #2ebaae; //logo color
+/* input boxes and error message */
+$width-base: 160px;
+$width-gap: 9px;
+$width-xs: 0.5 * ($width-base - $width-gap);
+$width-sm: 0.75 * $width-base;
+$width-md: $width-base;
+$width-lg: $width-md * 2 + $width-gap;
+$width-xl: $width-lg * 2 + $width-gap;
+
+/* width of data field being displayed as key value pair */
+$field-width-base: 200px;

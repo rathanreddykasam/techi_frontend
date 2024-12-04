@@ -1,40 +1,114 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
+@use "@angular/material" as mat;
 @include mat.core();
+@import "./assets/styles/flex-box.styles.scss";
+@import "./assets/styles/common-attributes.scss";
+@import "./assets/styles/element.scss";
+@import "./assets/styles/material.scss";
 
-// Define the theme object.
-$techi_frontend-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  ),
-  density: (
-    scale: 0,
+$UAC-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    density: (
+      scale: 0,
+    ),
   )
-));
+);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
 :root {
-  @include mat.all-component-themes($techi_frontend-theme);
+  @include mat.all-component-themes($UAC-theme);
 }
 
 // Comment out the line below if you want to use the pre-defined typography utility classes.
 // For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-// @include mat.typography-hierarchy($techi_frontend-theme);
+// @include mat.typography-hierarchy($UAC-theme);
 
 // Comment out the line below if you want to use the deprecated `color` inputs.
-// @include mat.color-variants-backwards-compatibility($techi_frontend-theme);
+// @include mat.color-variants-backwards-compatibility($UAC-theme);
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+ul,
+li {
+  list-style-type: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #3c3b3b;
+  font-family: "Raleway", Helvetica, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  line-height: 1.65;
+  margin: 0 0 1em 0;
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: #f4f4f4;
+  color: #646464;
+  font-family: "Raleway", Helvetica, sans-serif;
+}
+
+a {
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
+
+.mat-mdc-dialog-container {
+  max-width: none !important;
+}
+
+.mat-form-field {
+  --mat-primary-color: #ff5722; // Override primary color
+}
+
+.mat-input-element {
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.mat-toolbar {
+  background: #fff !important;
+}
+
+.body-section {
+  width: 95%;
+  margin: auto;
+}
+
+.th-border-bottom {
+  border-bottom: solid 1px rgba(160, 160, 160, 0.3);
+}
+
+.th-border-right {
+  border-right: solid 1px rgba(160, 160, 160, 0.3);
+}
+
+.banner_desc {
+  letter-spacing: 1.1px;
+  line-height: 1.7em;
+  text-align: justify;
+}
+
+.author-image {
+  border-radius: 20px;
+}
+
+.text-center {
+  text-align: center;
+}

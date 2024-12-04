@@ -1,0 +1,32 @@
+@import "../../../../assets/styles/common-attributes.scss";
+
+.banner-logo {
+  position: relative;
+}
+
+.banner {
+  border: 1px solid $cjust-grey;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 5px;
+  display: inline-flex;
+}
+img {
+  border-radius: 0.7rem;
+}
+.logo {
+  position: absolute;
+  height: 125px;
+  width: 125px;
+  bottom: -50px;
+  left: 40px;
+  display: inline-flex;
+  border-radius: 15px;
+  background: #f4f4f4;
+}
+
+.view-post {
+  width: 100%;
+  display: block;
+  text-align: center;
+}

@@ -1,4 +1,5 @@
 export const environment = {
-    production: false,
-    apiUrl: 'localhost:8888'
+  production: false,
+  apiUrl: 'http://frontend.test',
+  release_version: 1.0,
 };

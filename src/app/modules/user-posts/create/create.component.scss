@@ -1,0 +1,40 @@
+@import "../../../../assets/styles/common-attributes.scss";
+.mat-mdc-input-element {
+  text-align: center;
+  font-weight: 600;
+}
+
+.title .mat-mdc-input-element {
+  font-size: 3rem;
+  line-height: 32px;
+}
+
+.tagline .mat-mdc-input-element {
+  font-size: 1.5rem;
+  line-height: 32px;
+}
+
+.banner-logo {
+  position: relative;
+}
+
+.banner {
+  border: 1px solid $cjust-grey;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 5px;
+  display: inline-flex;
+}
+img {
+  border-radius: 0.7rem;
+}
+.logo {
+  position: absolute;
+  height: 125px;
+  width: 125px;
+  bottom: -50px;
+  left: 100px;
+  display: inline-flex;
+  border-radius: 15px;
+  background: #f4f4f4;
+}

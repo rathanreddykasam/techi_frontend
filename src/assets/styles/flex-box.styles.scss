@@ -1,0 +1,275 @@
+//https://tburleson-layouts-demos.firebaseapp.com/#/docs
+//https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-background
+//reference document
+.flex {
+	display : -webkit-box;
+	display : -ms-flexbox;
+	display : flex;
+}
+
+.flex-item {
+	flex: 1;
+}
+
+.fx-row {
+	display               : -webkit-box;
+	display               : -ms-flexbox;
+	display               : flex;
+	-webkit-box-orient    : horizontal;
+	-webkit-box-direction : normal;
+	-ms-flex-direction    : row;
+	flex-direction        : row;
+
+	&-button {
+		gap: 9px;
+	}
+
+	&-gap {
+		margin-right: 9px;
+	}
+}
+
+.fx-row-reverse {
+	display               : -webkit-box;
+	display               : -ms-flexbox;
+	display               : flex;
+	-webkit-box-orient    : horizontal;
+	-webkit-box-direction : reverse;
+	-ms-flex-direction    : row-reverse;
+	flex-direction        : row-reverse;
+}
+
+.fx-col {
+	display               : -webkit-box;
+	display               : -ms-flexbox;
+	display               : flex;
+	-webkit-box-orient    : vertical;
+	-webkit-box-direction : normal;
+	-ms-flex-direction    : column;
+	flex-direction        : column;
+
+	&-input-field {
+		margin-right		  : 9px;
+	}
+}
+
+.fx-col-reverse {
+	display               : -webkit-box;
+	display               : -ms-flexbox;
+	display               : flex;
+	-webkit-box-orient    : vertical;
+	-webkit-box-direction : reverse;
+	-ms-flex-direction    : column-reverse;
+	flex-direction        : column-reverse;
+}
+
+
+//default value for perpendicular should always be stretch class="stretch .....any"
+$alignPerpendicular: ("start": flex-start, "end": flex-end, 
+			"center": center, "stretch": stretch);
+//default value for horizontal should always be start class="...any flex-start"
+$alignHorizontal: ("start": flex-start, "end": flex-end, 
+			"center": center, "around": space-around, "between": space-between,
+			"evenly": space-evenly);
+
+@each $pName, $pValue in $alignPerpendicular{
+	@each $hName, $hValue in $alignHorizontal{
+		.fx-layout-align--#{$pName}--#{$hName} {
+			box-sizing: border-box;
+			place-content: $pValue $hValue;
+			align-items: $pValue;
+		}
+	}
+}
+
+$justifyContents: 	"start" "flex-start" "start", 
+					"end" "flex-end" "end", 
+					"center" "center" "center",
+					"between" "space-between" "justify",
+					"around" "space-around" "distribute",
+					"evenly" "space-evenly" "even";
+
+@each $name, $value, $pack in $justifyContents {
+	.fx-justify-content--#{$name} {
+		justify-content: $value;
+	}
+}
+
+$alignContents:	("start": flex-start, "end": flex-end, "center": center);
+
+@each $name, $value in $alignContents{
+	.fx-align-content--#{$name} {
+		align-content: $value;
+	}
+}
+
+$alignSelfs: ("auto": auto, "start": flex-start, "end": flex-end, 
+			"center": center, "stretch": stretch, "baseline": baseline);
+
+@each $name, $value in $alignSelfs{
+	.fx-align-self--#{$name} {
+		align-self: $value;
+	}
+}
+
+@media(max-width:600px){ //mobile screens
+	.fx-xs-row{
+		display               : -webkit-box;
+		display               : -ms-flexbox;
+		display               : flex;
+		-webkit-box-orient    : horizontal;
+		-webkit-box-direction : normal;
+		-ms-flex-direction    : row;
+		flex-direction        : row;
+	}
+
+	.fx-xs-col{
+		display               : -webkit-box;
+		display               : -ms-flexbox;
+		display               : flex;
+		-webkit-box-orient    : vertical;
+		-webkit-box-direction : normal;
+		-ms-flex-direction    : column;
+		flex-direction        : column;
+	}
+
+	.fx-xs-row-reverse {
+		display               : -webkit-box;
+		display               : -ms-flexbox;
+		display               : flex;
+		-webkit-box-orient    : horizontal;
+		-webkit-box-direction : reverse;
+		-ms-flex-direction    : row-reverse;
+		flex-direction        : row-reverse;
+	}
+
+	.fx-xs-col-reverse {
+		display               : -webkit-box;
+		display               : -ms-flexbox;
+		display               : flex;
+		-webkit-box-orient    : vertical;
+		-webkit-box-direction : reverse;
+		-ms-flex-direction    : column-reverse;
+		flex-direction        : column-reverse;
+	}
+
+	.fx-xs-hide {
+		display: none;
+	}
+
+}
+
+@media (min-width: 1200px) {
+	.fx-lg-hide {
+		display: none;
+	}
+}
+
+@media(max-width: 1200px) { //tab screens
+	.fx-md-hide {
+		display: none;
+	}
+	
+}
+
+$fxWraps: wrap, nowrap, wrap-reverse;
+
+@each $wrap in $fxWraps {
+  .fx-#{$wrap} {
+	display : -webkit-box;
+	display : -ms-flexbox;
+	display : flex;
+    flex-wrap: $wrap;
+  }
+}
+
+//$i -> flex-grow in real number; $j -> flex-shrink in real number; $k -> flex-basis in %
+@for $i from 0 through 10 {
+	@for $j from 0 through 10 {
+		@for $k from 1 through 100 {
+			.fx-#{$i}-#{$j}-#{$k} {
+				flex: $i $j 0%+$k;
+			}
+		}
+	}
+}
+
+// @for $i from 0 through 100 {
+	
+// }
+
+@for $i from 0 through 100 { 
+	.w-#{$i} {
+		width: $i+0% !important;
+	}
+	.min-w-#{$i} {
+		min-width: $i+0px !important;
+	}
+	.max-w-#{$i} {
+		max-width: $i+0px !important;
+	}
+	.h-#{$i} {
+		height: $i+0vh !important;
+	}
+	.fx-grow-#{$i} {
+		flex-grow: $i !important;
+	}
+	.fx-shrink-#{$i} {
+		flex-shrink: $i !important;
+	}
+	.fx-basis-#{$i} {
+		flex-basis: $i+0% !important;
+	}
+	.m-#{$i} {
+		margin: 0px + $i !important;
+	}
+	.gap-#{$i} {
+		gap: 0px + $i !important;
+	}
+	.mt-#{$i} {
+		margin-top: 0px + $i !important;
+	}
+	.mb-#{$i} {
+		margin-bottom: 0px + $i !important;
+	}
+	.mr-#{$i} {
+		margin-right: 0px + $i !important;
+	}
+	.ml-#{$i} {
+		margin-left: 0px + $i !important;
+	}
+	.p-#{$i} {
+		padding: 0px + $i !important;
+	}
+	.pt-#{$i} {
+		padding-top: 0px + $i !important;
+	}
+	.pb-#{$i} {
+		padding-bottom: 0px + $i !important;
+	}
+	.pr-#{$i} {
+		padding-right: 0px + $i !important;
+	}
+	.pl-#{$i} {
+		padding-left: 0px + $i !important;
+	}
+}
+
+@for $i from 0 through 100 {
+	@for $j from 0 through 100 {
+		.m-#{$i}-#{$j} {
+			margin: 0px + $i 0px + $j !important;
+		}
+		.p-#{$i}-#{$j} {
+			padding: 0px + $i 0px + $j !important;
+		}
+	}
+}
+
+$offsetValues: (1: 8.333, 2: 16.666, 3: 25, 4: 33.333, 5: 41.666, 6: 50, 7: 58.333, 8: 66.666, 9: 75, 10: 83.333, 11: 91.666, 12: 100);
+
+@each $key, $value in $offsetValues {
+	.fx-offset-#{$key} {
+		margin-left: 0% + $value;
+	}
+}

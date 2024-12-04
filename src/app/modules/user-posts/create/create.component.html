@@ -1,0 +1,150 @@
+<mat-card appearance="outlined" class="w-70 mt-20 mb-20" style="margin: auto">
+  <mat-card-content class="m-20">
+    <form [formGroup]="postForm">
+      <div class="title">
+        <mat-form-field class="example-full-width w-100">
+          <mat-label>STARTUP TITLE</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="heading"
+            placeholder="STARTUP TITLE"
+            required="true"
+          />
+        </mat-form-field>
+      </div>
+      <div class="tagline">
+        <mat-form-field class="example-full-width w-100">
+          <mat-label>TAG LINE</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="tagline"
+            placeholder="TAG LINE"
+            required="true"
+          />
+        </mat-form-field>
+      </div>
+      <div class="banner-logo-upload flex">
+        <input
+          id="banner"
+          type="file"
+          (change)="onFileSelected($event, 'bannerFile')"
+        />
+
+        <input
+          id="logo"
+          type="file"
+          (change)="onFileSelected($event, 'logoFile')"
+        />
+      </div>
+      <div class="banner-logo mb-55 text-center">
+        <div *ngIf="bannerPreview" class="banner">
+          <img [src]="bannerPreview" alt="image" />
+        </div>
+        <div *ngIf="logoPreview" class="logo">
+          <img [src]="logoPreview" alt="logo" />
+        </div>
+      </div>
+
+      <div class="short-story pt-20">
+        <mat-form-field class="example-full-width w-100">
+          <mat-label>Short & Brief Your Startup</mat-label>
+          <textarea
+            matInput
+            formControlName="Intro"
+            placeholder="Short & Brief Your Startup"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="story">
+        <mat-form-field class="example-full-width w-100">
+          <mat-label>Story</mat-label>
+          <textarea
+            matInput
+            formControlName="story"
+            placeholder="Story"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="youtube">
+        <mat-form-field class="example-full-width w-100">
+          <mat-label>Youtube Embed Link</mat-label>
+          <input
+            matInput
+            formControlName="video"
+            placeholder="Youtube Embed Link"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="youtube">
+        <mat-form-field class="example-full-width w-100">
+          <mat-label>Website Link</mat-label>
+          <input
+            matInput
+            formControlName="site_link"
+            placeholder="Website Link"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="flex gap-20">
+        <mat-form-field class="example-full-width w-50">
+          <mat-label>Team Size</mat-label>
+          <mat-select [formControl]="teamControl">
+            @for (team of teamList; track team) {
+            <mat-option [value]="team.key">{{ team.value }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width w-50">
+          <mat-label>Tell Us Something about your journey</mat-label>
+          <textarea
+            matInput
+            formControlName="some_text"
+            placeholder="Tell Us Something about your Journey"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="flex gap-20 mb-20">
+        <mat-form-field class="example-full-width w-50">
+          <mat-label>Branch</mat-label>
+          <mat-select [formControl]="branchControl">
+            @for (branch of branchList; track branch) {
+            <mat-option value="{{ branch.key }}">{{ branch.value }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width w-50">
+          <mat-label>Category</mat-label>
+          <mat-select [formControl]="categoryControl">
+            @for (category of categoryList; track category) {
+            <mat-option value="{{ category.key }}">{{
+              category.value
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-slide-toggle formControlName="post_as">
+        Post As @if(postForm.get('post_as').value){
+        <span style="font-weight: 600">{{ user.name }} </span>
+        }@else{
+        <span style="font-weight: 600">Anonomous</span>
+        }</mat-slide-toggle
+      >
+
+      <div class="flex gap-10 mt-10">
+        <button mat-flat-button (click)="onSubmit(false)">Save as Draft</button>
+        <button mat-flat-button type="submit" (click)="onSubmit(true)">
+          Publish
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

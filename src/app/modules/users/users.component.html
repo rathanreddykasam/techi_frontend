@@ -1,0 +1,82 @@
+<mat-card appearance="outlined" class="p-20-30 m-20">
+  <h2>Search User</h2>
+  <form [formGroup]="userSearchForm" autocomplete="off" (submit)="searchUser()">
+    <div class="flex fx-wrap">
+      <div class="fx-col fx-col-input-field">
+        <mat-form-field class="input-lg" appearance="outline">
+          <mat-label>User Name</mat-label>
+          <input matInput placeholder="User Name" minlength="1" formControlName="userName" id="userName" required />
+        </mat-form-field>
+        <ng-container *ngFor="let validation of validationMessages.userName">
+          <mat-error class="error-lg" *ngIf="
+            userSearchForm
+            .get('userName')
+            .hasError(validation.type) &&
+            (userSearchForm.get('userName').dirty ||
+            userSearchForm.get('userName').touched)
+          ">
+            {{ validation.message }}
+          </mat-error>
+        </ng-container>
+      </div>
+      <div class="fx-col fx-col-input-field">
+        <mat-form-field class="input-lg" appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="First Name" minlength="1" formControlName="firstName" id="firstName" required />
+        </mat-form-field>
+        <ng-container *ngFor="let validation of validationMessages.firstName">
+          <mat-error class="error-lg" *ngIf="
+            userSearchForm
+            .get('firstName')
+            .hasError(validation.type) &&
+            (userSearchForm.get('firstName').dirty ||
+            userSearchForm.get('firstName').touched)
+          ">
+            {{ validation.message }}
+          </mat-error>
+        </ng-container>
+      </div>
+      <div class="fx-col fx-col-input-field">
+        <mat-form-field class="input-lg" appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Last Name" minlength="1" formControlName="lastName" id="lastName" required />
+        </mat-form-field>
+        <ng-container *ngFor="let validation of validationMessages.lastName">
+          <mat-error class="error-lg" *ngIf="
+            userSearchForm
+            .get('lastName')
+            .hasError(validation.type) &&
+            (userSearchForm.get('lastName').dirty ||
+            userSearchForm.get('lastName').touched)
+          ">
+            {{ validation.message }}
+          </mat-error>
+        </ng-container>
+      </div>
+    </div>
+    <div class="flex fx-row-button fx-layout-align--center--end gap-6 button">
+      <button mat-raised-button type="button" class="button-secondary" (click)="resetForm()" id="resetForm">
+        <u>R</u>ESET
+      </button>
+      <button mat-flat-button type="submit" [class.button-enabled]="true" id="btnSearch" [disabled]="!isFormValid()">
+        <u>A</u>PPLY
+      </button>
+    </div>
+  </form>
+</mat-card>
+
+@if(tableData){
+<div class="p-20">
+  <ag-grid-angular style="width: 100%" 
+  [class]="themeClass" 
+  [gridOptions]="gridOptions" 
+  (gridReady)="onGridReady($event)"
+  />
+
+  <div class="example-button-row pb-20 pt-20">
+    <button mat-flat-button (click)="addUser()">Add User</button>
+  </div>
+</div>
+} @else if(isLoading) {
+<div class="flex fx-layout-align--center--center">loading...</div>
+}

@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'techi_frontend' title`, () => {
+  it(`should have the 'UAC' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('techi_frontend');
+    expect(app.title).toEqual('UAC');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, techi_frontend');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, UAC');
   });
 });

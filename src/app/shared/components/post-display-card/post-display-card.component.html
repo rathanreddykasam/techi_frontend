@@ -1,0 +1,51 @@
+<mat-card class="example-card" appearance="outlined">
+  <mat-card-header>
+    <div class="flex w-100 fx-wrap th-border-bottom">
+      <div
+        class="title flex-item fx-col w-100 fx-grow-3 fx-layout-align--center--between th-border-right"
+      >
+        <h2>
+          <a>MAGNA SED ADIPISCING</a>
+        </h2>
+        <p>Lorem ipsum dolor amer Nullam Consequent etiam feugiat</p>
+      </div>
+      <div
+        class="meta flex-item flex w-100 fx-grow-1 fx-layout-align--center--end"
+      >
+        <div class="fx-col gap-20">
+          <time class="published" datetime="2015-11-01">November 1, 2015</time>
+          <a
+            class="author cursor-pointer flex fx-layout-align--center--start gap-10"
+          >
+            <span class="author-name">Jane Doe</span>
+            <img
+              class="author-image"
+              src="../../assets/images/avatar.jpg"
+              alt="author"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </mat-card-header>
+  <div class="p-45">
+    <img
+      class="w-100"
+      mat-card-image
+      src="../../assets/images/pic01.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+  </div>
+  <mat-card-content class="pl-45 pr-45 pb-30">
+    <p class="banner_desc">
+      The Shiba Inu is the smallest of the six original and distinct spitz
+      breeds of dog from Japan. A small, agile dog that copes very well with
+      mountainous terrain, the Shiba Inu was originally bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="pl-45 pr-45 pb-30">
+    <button mat-raised-button (click)="viewPost.emit(1)">
+      Continue Reading
+    </button>
+  </mat-card-actions>
+</mat-card>

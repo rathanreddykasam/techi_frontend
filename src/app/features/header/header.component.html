@@ -1,0 +1,54 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+<!-- eslint-disable @angular-eslint/template/no-autofocus -->
+<div class="section">
+  <mat-toolbar>
+    <div class="header-section flex fx-layout-align--center--between">
+      <span class="logo fx-xs-hide cursor-pointer">{{ title }}</span>
+      <span class="logo fx-xs-show fx-lg-hide cursor-pointer">{{ "TH" }}</span>
+      <span class="global-search">
+        <form class="example-form">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Search...</mat-label>
+            <input
+              type="email"
+              matInput
+              formControlName="emailFormControl"
+              placeholder="Ex. pat@example.com"
+            />
+          </mat-form-field>
+        </form>
+      </span>
+
+      <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
+      @if(!user) {
+      <span class="profile cursor-pointer" (click)="openAuthpopup()">
+        <mat-icon
+          class="mr-10 cursor-pointer"
+          matTooltip="login/signup"
+          aria-hidden="false"
+          aria-label="person Icon"
+          fontIcon="person"
+        ></mat-icon
+        >login/signup
+      </span>
+      } @else {
+      <span [matMenuTriggerFor]="beforeMenu" class="profile cursor-pointer">
+        <mat-icon
+          class="mr-10 cursor-pointer"
+          matTooltip="login/signup"
+          aria-hidden="false"
+          aria-label="person Icon"
+          fontIcon="person"
+        ></mat-icon
+        >{{ user.name }}
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+          <button mat-menu-item>Profile</button>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </span>
+      }
+    </div>
+  </mat-toolbar>
+</div>

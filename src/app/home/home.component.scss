@@ -1,0 +1,31 @@
+.mat-mdc-card-header {
+    padding: 0;
+}
+
+.title, .meta {
+    padding: 3rem;
+}
+
+
+.center {
+    padding: 10px 0;
+    text-align: center;
+    font-size: x-large;
+    color: white;
+    font-weight: normal;
+    font-size: 150%;
+}
+.disclaimer{
+    padding: 2rem 1rem;
+    font-size: small;
+    /* font-size: 12px; */
+    color: black;
+    text-indent: 2em;
+}
+.logo {
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+ 

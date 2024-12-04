@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "techi_frontend": {
+    "UAC": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,12 +12,12 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "uac",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/techi_frontend",
+            "outputPath": "dist/uac",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -26,13 +26,13 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ag-grid-community/styles/ag-grid.css",
+              "node_modules/ag-grid-community/styles/ag-theme-quartz.css"
             ],
             "scripts": []
           },
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "techi_frontend:build:production"
+              "buildTarget": "UAC:build:production"
             },
             "development": {
-              "buildTarget": "techi_frontend:build:development"
+              "buildTarget": "UAC:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -116,7 +116,10 @@
   },
   "cli": {
     "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+      "@angular-eslint/schematics",
+      "@schematics/angular",
+      "@ngrx/schematics"
+    ],
+    "analytics": false
   }
 }
