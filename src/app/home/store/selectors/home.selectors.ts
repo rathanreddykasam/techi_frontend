@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { selectHomeFeature } from '..';
 
-export const selectUsers = createSelector(
+export const userPosts = createSelector(
   selectHomeFeature,
   ({ usersPosts }) => usersPosts
 );

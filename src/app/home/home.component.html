@@ -15,12 +15,13 @@
     </div>
 
     <div class="new-posts w-100">
-      <uac-mini-post-card></uac-mini-post-card>
+      <uac-mini-post-card [data]="miniposts"></uac-mini-post-card>
     </div>
   </div>
   <div class="main-section flex-item fx-col gap-30 fx-grow-5">
     <div class="new-posts w-100">
       <uac-post-display-card
+        [data]="majorPosts"
         (viewPost)="viewPost($event)"
       ></uac-post-display-card>
     </div>

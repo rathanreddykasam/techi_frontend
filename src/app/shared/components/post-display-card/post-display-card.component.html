@@ -1,13 +1,14 @@
-<mat-card class="example-card" appearance="outlined">
+@for(post of data; track post; let i = $index) {
+<mat-card class="example-card mb-40" appearance="outlined">
   <mat-card-header>
     <div class="flex w-100 fx-wrap th-border-bottom">
       <div
         class="title flex-item fx-col w-100 fx-grow-3 fx-layout-align--center--between th-border-right"
       >
         <h2>
-          <a>MAGNA SED ADIPISCING</a>
+          <a>{{ post?.heading }}</a>
         </h2>
-        <p>Lorem ipsum dolor amer Nullam Consequent etiam feugiat</p>
+        <p>{{ post?.tagline }}</p>
       </div>
       <div
         class="meta flex-item flex w-100 fx-grow-1 fx-layout-align--center--end"
@@ -38,9 +39,7 @@
   </div>
   <mat-card-content class="pl-45 pr-45 pb-30">
     <p class="banner_desc">
-      The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
+      {{ post?.Intro }}
     </p>
   </mat-card-content>
   <mat-card-actions class="pl-45 pr-45 pb-30">
@@ -49,3 +48,4 @@
     </button>
   </mat-card-actions>
 </mat-card>
+}

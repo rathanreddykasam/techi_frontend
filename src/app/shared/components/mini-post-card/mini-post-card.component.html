@@ -1,10 +1,11 @@
-<mat-card class="example-card" appearance="outlined">
+@for(post of data; track post; let i = $index) {
+<mat-card class="example-card mb-30" appearance="outlined">
   <mat-card-header>
     <div class="pb-15">
       <img
         class="w-100"
         mat-card-image
-        src="../../assets/images/pic01.jpg"
+        [src]="post?.bannerUrl"
         alt="Photo of a Shiba Inu"
       />
     </div>
@@ -13,7 +14,7 @@
     <div class="flex w-100">
       <div class="title flex-item fx-col w-100 fx-grow-3">
         <h6>
-          <a>MAGNA SED ADIPISCING</a>
+          <a>{{ post?.heading }}</a>
         </h6>
         <time class="published" datetime="2015-11-01">November 1, 2015</time>
       </div>
@@ -33,3 +34,4 @@
     </div>
   </mat-card-actions>
 </mat-card>
+}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
@@ -9,4 +10,6 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './mini-post-card.component.html',
   styleUrl: './mini-post-card.component.scss',
 })
-export class MiniPostCardComponent {}
+export class MiniPostCardComponent {
+  @Input() data: any;
+}
