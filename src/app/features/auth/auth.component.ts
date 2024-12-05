@@ -3,6 +3,7 @@ import { MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { SignupComponent } from '../signup/signup.component';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'uac-auth',
@@ -13,6 +14,7 @@ import { SignupComponent } from '../signup/signup.component';
     MatTabsModule,
     MatDialogTitle,
     SignupComponent,
+    MatListModule
   ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss',

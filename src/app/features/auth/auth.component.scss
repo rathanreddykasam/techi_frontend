@@ -1,3 +1,11 @@
+@import "../../../../src/assets/styles/common-attributes.scss";
 .cdk-overlay-pane.mat-mdc-dialog-panel {
     max-width: 100% !important;
+}
+h4 {
+    color: $cjust-green;
+}
+
+mat-tab-label{
+    color: $cjust-green;
 }
