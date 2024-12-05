@@ -7,7 +7,7 @@
     <div class="header-section flex fx-layout-align--center--between">
       <span class="logo fx-xs-hide cursor-pointer">{{ title }}</span>
       <span class="logo fx-xs-show fx-lg-hide cursor-pointer">{{ "TH" }}</span>
-      <span class="global-search">
+      <!-- <span class="global-search">
         <form class="example-form">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Search...</mat-label>
@@ -19,7 +19,7 @@
             />
           </mat-form-field>
         </form>
-      </span>
+      </span> -->
 
       <!-- eslint-disable-next-line @angular-eslint/template/click-events-have-key-events -->
       @if(!user) {
@@ -44,7 +44,7 @@
         ></mat-icon
         >{{ user.name }}
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item>Profile</button>
+          <button mat-menu-item (click)="createPost()">Create Post</button>
           <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
       </span>

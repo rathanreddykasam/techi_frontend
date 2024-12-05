@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth/auth.service';
 import { catchError, of, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'uac-login',
@@ -33,7 +34,11 @@ export class LoginComponent implements OnInit {
   errorMessage: string;
   readonly dialog = inject(MatDialog);
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.validationMessages = ValidationMessages.validation_messages;
   }
 
@@ -45,6 +50,10 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       username: new FormControl(),
       password: new FormControl(),
+    });
+
+    this.loginForm.valueChanges.subscribe(() => {
+      this.errorMessage = '';
     });
   }
 
@@ -64,6 +73,9 @@ export class LoginComponent implements OnInit {
             email: response.data.email,
           });
           this.dialog.closeAll();
+          const redirectUrl = this.authService.redirectUrl || '/home';
+          this.authService.redirectUrl = null; // Clear redirect URL
+          this.router.navigate([redirectUrl]);
           //this.router.navigate(['/dashboard']); // Adjust navigation as needed
         }),
         // Handle errors

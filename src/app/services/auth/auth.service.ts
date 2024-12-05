@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api-services/api-service.service';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,10 @@ import { Router } from '@angular/router';
 export class AuthService {
   private tokenKey = 'authToken'; // Key for storing token in localStorage
   private userKey = 'authUser';
+  public redirectUrl: string | null = null;
+
+  private mySubject = new BehaviorSubject<string>('Initial Value');
+  myValue$ = this.mySubject.asObservable();
 
   constructor(private http: ApiService, private router: Router) {}
 
@@ -31,6 +36,7 @@ export class AuthService {
     name: string;
     email: string;
   }) {
+    this.updateValue(response);
     localStorage.setItem(this.tokenKey, response.authToken);
     localStorage.setItem(
       this.userKey,
@@ -40,6 +46,10 @@ export class AuthService {
         email: response.email,
       })
     );
+  }
+
+  updateValue(newValue?: any) {
+    this.mySubject.next(newValue);
   }
 
   getToken(): string | null {
@@ -57,8 +67,8 @@ export class AuthService {
 
   logout() {
     this.http.post('api/logout');
-    localStorage.clear();
+    this.updateValue();
     this.router.navigate(['/home']);
-    window.location.reload();
+    localStorage.clear();
   }
 }

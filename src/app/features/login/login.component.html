@@ -49,10 +49,12 @@
       <mat-error class="error-lg">
         {{ validation.message }}
       </mat-error>
+      } @if(errorMessage){
+      <mat-error>{{ errorMessage }}</mat-error>
       } }
     </div>
   </div>
-  <div class="flex gap-10">
+  <div class="flex gap-10 mt-20">
     <button mat-raised-button mat-dialog-close>Cancel</button>
     <button mat-flat-button type="submit" [disabled]="!validate()">
       Login

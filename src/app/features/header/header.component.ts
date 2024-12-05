@@ -49,7 +49,11 @@ export class HeaderComponent implements OnInit {
   active = true;
   emailFormControl = new FormControl('');
 
-  constructor(public router: Router, private authService: AuthService) {}
+  constructor(public router: Router, private authService: AuthService) {
+    this.authService.myValue$.subscribe((value) => {
+      this.user = value;
+    });
+  }
 
   ngOnInit(): void {
     this.user = this.authService.getUserDetails();
@@ -68,5 +72,9 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+  }
+
+  createPost() {
+    this.router.navigate([`/user-posts`]);
   }
 }

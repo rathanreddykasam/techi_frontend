@@ -33,7 +33,7 @@
     <img
       class="w-100"
       mat-card-image
-      src="../../assets/images/pic01.jpg"
+      [src]="post?.bannerUrl"
       alt="Photo of a Shiba Inu"
     />
   </div>
@@ -43,7 +43,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions class="pl-45 pr-45 pb-30">
-    <button mat-raised-button (click)="viewPost.emit(1)">
+    <button mat-raised-button (click)="viewPost.emit(post?.id)">
       Continue Reading
     </button>
   </mat-card-actions>
