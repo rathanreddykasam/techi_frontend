@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
@@ -12,4 +12,5 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class MiniPostCardComponent {
   @Input() data: any;
+  @Output() viewPost = new EventEmitter<number>();
 }

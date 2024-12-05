@@ -4,6 +4,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ApiService } from '../../../services/api-services/api-service.service';
+import { catchError, of, tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'uac-create',
@@ -21,6 +23,7 @@ export class CreateComponent implements OnInit {
   branchControl = new FormControl();
   categoryControl = new FormControl();
   teamControl = new FormControl();
+  errorMessage: any;
 
   teamList: any[] = [
     { key: 1, value: '1 - 10 mems' },
@@ -45,7 +48,8 @@ export class CreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private http: ApiService
+    private http: ApiService,
+    private router: Router
   ) {
     this.user = this.authService.getUserDetails();
   }
@@ -137,7 +141,18 @@ export class CreateComponent implements OnInit {
       // Send formData to your backend via HttpClient
       this.http
         .post('posts/create', formData)
-        .subscribe((response) => console.log(response));
+        .pipe(
+          // Process response
+          tap((response: any) => {
+            this.router.navigate([`/view/${response?.data?.id}`]); // Adjust navigation as needed
+          }),
+          // Handle errors
+          catchError(() => {
+            this.errorMessage = 'Invalid email or password';
+            return of(null); // Return a safe observable
+          })
+        )
+        .subscribe();
     } else {
       console.log('Form is invalid!');
     }

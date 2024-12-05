@@ -77,4 +77,8 @@ export class HeaderComponent implements OnInit {
   createPost() {
     this.router.navigate([`/user-posts`]);
   }
+
+  navigateToHome() {
+    this.router.navigate([`/home`]);
+  }
 }

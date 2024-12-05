@@ -1,5 +1,9 @@
 @for(post of data; track post; let i = $index) {
-<mat-card class="example-card mb-30" appearance="outlined">
+<mat-card
+  class="example-card cursor-pointer mb-30"
+  appearance="outlined"
+  (click)="viewPost.emit(post?.id)"
+>
   <mat-card-header>
     <div class="pb-15">
       <img

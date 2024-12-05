@@ -93,7 +93,11 @@
       <mat-error class="error-lg">
         {{ validation.message }}
       </mat-error>
-      } }
+      } @if(errorMessage) {
+      <mat-error class="error-lg pt-20">
+        {{ validation }}
+      </mat-error>
+      }}
     </div>
   </div>
   <div class="flex gap-10">

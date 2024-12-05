@@ -18,6 +18,7 @@ import { ValidationMessages } from '../../shared/services/validation-messages';
 import { catchError, of, tap } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'uac-signup',
@@ -39,7 +40,11 @@ export class SignupComponent implements OnInit {
   errorMessage: string;
   readonly dialog = inject(MatDialog);
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.validationMessages = ValidationMessages.validation_messages;
   }
 
@@ -74,11 +79,14 @@ export class SignupComponent implements OnInit {
             email: response.data.email,
           });
           this.dialog.closeAll();
+          const redirectUrl = this.authService.redirectUrl || '/home';
+          this.authService.redirectUrl = null; // Clear redirect URL
+          this.router.navigate([redirectUrl]);
           //this.router.navigate(['/dashboard']); // Adjust navigation as needed
         }),
         // Handle errors
-        catchError(() => {
-          this.errorMessage = 'Invalid email or password';
+        catchError((error) => {
+          console.log(error);
           return of(null); // Return a safe observable
         })
       )
